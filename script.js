@@ -1,12 +1,12 @@
-document.addEventListener('DOMContentLoaded', event => 
-  appendBreweries()
-)
+document.addEventListener('DOMContentLoaded', event => {
+  fetchBreweries()
+  
+})
 
-function fetchBreweriesByLocation() {
+function fetchBreweries() {
   fetch('https://api.openbrewerydb.org/breweries')
   .then(resp => resp.json())
-  .then(data => console.log(data))
+  .then(breweries => appendBreweries(breweries))
 }
-
 
 
