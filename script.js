@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', event => {
-  fetchBreweries()
   getCityAndState()
 })
 
@@ -11,7 +10,6 @@ function getCityAndState() {
     const stateInput = document.getElementById('state')
     let city = cityInput.value.toLowerCase()
     let state = stateInput.value.toLowerCase()
-    console.log('city: ', city, 'state: ', state)
     fetchBreweries(city, state)
     form.reset()
   })
@@ -34,6 +32,7 @@ function appendBreweries(breweries) {
     p.textContent = `Type: ${brewery.brewery_type}`
     ul.append(li, p, likeBtn)
     likeButton(likeBtn)
+    highlightBreweryAndType(li, p)
   })
 }
 
@@ -44,5 +43,21 @@ function likeButton(likeBtn) {
     } else {
       likeBtn.innerText = 'Gulp'
     }
+  })
+}
+
+function highlightBreweryAndType(li, p) {
+  console.log(li, p)
+  li.addEventListener('mouseover', event => {
+    event.target.style.color = 'gold'
+    setTimeout(() => {
+      event.target.style.color = ''
+    }, 1000)
+  })
+  p.addEventListener('mouseover', event => {
+    event.target.style.color = 'orange'
+    setTimeout(() => {
+      event.target.style.color = ''
+    }, 1000)
   })
 }
