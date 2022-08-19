@@ -19,3 +19,9 @@ input#state {
   border-radius: 4px;
   text-align: center;
 }
+
+div#brewery-type-list {
+  position: absolute;
+  top: 245px;
+  left: 1100px
+}
