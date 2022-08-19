@@ -28,8 +28,21 @@ function appendBreweries(breweries) {
   breweries.forEach(brewery => {
     let li = document.createElement('li')
     let p = document.createElement('p')
+    let likeBtn = document.createElement('button')
+    likeBtn.textContent = 'Gulp'
     li.textContent = `Name: ${brewery.name}`
     p.textContent = `Type: ${brewery.brewery_type}`
-    ul.append(li, p)
+    ul.append(li, p, likeBtn)
+    likeButton(likeBtn)
+  })
+}
+
+function likeButton(likeBtn) {
+  likeBtn.addEventListener('click', event => {
+    if(likeBtn.innerText === 'Gulp') {
+      likeBtn.innerText = 'Belch'
+    } else {
+      likeBtn.innerText = 'Gulp'
+    }
   })
 }
