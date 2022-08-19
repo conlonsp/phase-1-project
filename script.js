@@ -18,7 +18,7 @@ function getCityAndState() {
 }
 
 function fetchBreweries(city, state) {
-  fetch(`https://api.openbrewerydb.org/breweries?by_city=${city}&by_state=${state}&per_page=100`)
+  fetch(`https://api.openbrewerydb.org/breweries?by_city=${city}&by_state=${state}&per_page=50`)
   .then(resp => resp.json())
   .then(breweries => appendBreweries(breweries))
 }
