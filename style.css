@@ -3,3 +3,18 @@ h3 {
   font-size: 75px;
   font-family: fantasy;
 }
+
+input#city {
+  width: 130px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+
+input#state {
+  width: 130px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+}
