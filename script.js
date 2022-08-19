@@ -13,6 +13,7 @@ function getCityAndState() {
     let state = stateInput.value.toLowerCase()
     console.log('city: ', city, 'state: ', state)
     fetchBreweries(city, state)
+    form.reset()
   })
 }
 
