@@ -23,6 +23,9 @@ function fetchBreweries(city, state) {
 
 function appendBreweries(breweries) {
   const ul = document.getElementById('brewery-list')
+  while(ul.firstChild) {
+    ul.removeChild(ul.firstChild)
+  }
   breweries.forEach(brewery => {
     let li = document.createElement('li')
     let p = document.createElement('p')
