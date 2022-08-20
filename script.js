@@ -1,13 +1,21 @@
 document.addEventListener('DOMContentLoaded', event => {
-  getCityAndState()
+  getPageNum()
 })
 
-function getNextPageNum() {
+function getPageNum() {
   let pageNum = 1
   const nextBtn = document.getElementById('next')
+  const backBtn = document.getElementById('back')
   nextBtn.addEventListener('click', event => {
     pageNum++
+    console.log(pageNum)
   })
+  backBtn.addEventListener('click', event => {
+    pageNum--
+    console.log(pageNum)
+  })
+  console.log(pageNum)
+  getCityAndState(pageNum)
 }
 
 function getCityAndState() {
@@ -18,13 +26,23 @@ function getCityAndState() {
     const stateInput = document.getElementById('state')
     let city = cityInput.value.toLowerCase()
     let state = stateInput.value.toLowerCase()
+    if(city === '') {
+      city = null
+    } else {
+      city
+    }
+    if(state === '') {
+      state = null
+    } else {
+      state
+    }
     fetchBreweries(city, state)
     form.reset()
   })
 }
 
-function fetchBreweries(city, state) {
-  fetch(`https://api.openbrewerydb.org/breweries?by_city=${city}&by_state=${state}&per_page=50`)
+function fetchBreweries(city, state, pageNum) {
+  fetch(`https://api.openbrewerydb.org/breweries?by_city=${city}&by_state=${state}&per_page=50&`)
   .then(resp => resp.json())
   .then(breweries => appendBreweries(breweries))
 }
