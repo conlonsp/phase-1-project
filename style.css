@@ -2,6 +2,10 @@ h3 {
   text-align: center;
   font-size: 75px;
   font-family: fantasy;
+  background-image: url('./images/Hardwood.jpg');
+  background-size: cover;
+  padding: 10px;
+  padding-bottom: 2px;
 }
 
 input#city {
@@ -20,12 +24,15 @@ input#state {
   text-align: center;
 }
 
-div#brewery-type-list {
+div.card {
   position: absolute;
   top: 235px;
-  left: 1100px
+  left: 1100px;
+  background-color: bisque;
+  padding: 2px 20px;
+  border: 5px outset tan
 }
 
 body {
-  background-image: url('./images/Hardwood.jpg');
+  background-color: blanchedalmond;
 }
