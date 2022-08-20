@@ -53,8 +53,8 @@ function appendBreweries(breweries) {
     type.textContent = `Type: ${brewery.brewery_type}`
     ul.append(name, street, type, likeBtn, dislikeBtn)
     likeButtons(likeBtn, dislikeBtn)
-    highlightBreweryAndType(name, type)
-    unhighlightBreweryAndType(name, type)
+    highlightBreweryInfo(name, street, type)
+    unhighlightBreweryInfo(name, street, type)
   })
 }
 
@@ -77,20 +77,26 @@ function likeButtons(likeBtn, dislikeBtn) {
   })
 }
 
-function highlightBreweryAndType(li, p) {
-  li.addEventListener('mouseover', event => {
+function highlightBreweryInfo(name, street, type) {
+  name.addEventListener('mouseover', event => {
+    event.target.style.color = 'darkgoldenrod'
+  })
+  street.addEventListener('mouseover', event => {
     event.target.style.color = 'goldenrod'
   })
-  p.addEventListener('mouseover', event => {
+  type.addEventListener('mouseover', event => {
     event.target.style.color = 'orange'
   })
 }
 
-function unhighlightBreweryAndType(li, p) {
-  li.addEventListener('mouseout', event => {
+function unhighlightBreweryInfo(name, street, type) {
+  name.addEventListener('mouseout', event => {
     event.target.style.color = 'black'
   })
-  p.addEventListener('mouseout', event => {
+  street.addEventListener('mouseout', event => {
+    event.target.style.color = 'black'
+  })
+  type.addEventListener('mouseout', event => {
     event.target.style.color = 'black'
   })
 }
