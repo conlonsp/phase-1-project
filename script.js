@@ -24,8 +24,8 @@ function getCityAndState() {
     event.preventDefault()
     const cityInput = document.getElementById('city')
     const stateInput = document.getElementById('state')
-    let city = cityInput.value.toLowerCase()
-    let state = stateInput.value.toLowerCase()
+    let city = encodeURIComponent(cityInput.value.toLowerCase())
+    let state = encodeURIComponent(stateInput.value.toLowerCase())
     if(city === '') {
       city = null
     } else {
