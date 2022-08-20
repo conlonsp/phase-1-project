@@ -62,17 +62,31 @@ function appendBreweries(breweries) {
     li.textContent = `Name: ${brewery.name}`
     p.textContent = `Type: ${brewery.brewery_type}`
     ul.append(li, p, likeBtn, dislikeBtn)
-    likeButton(likeBtn, dislikeBtn)
+    likeButtons(likeBtn, dislikeBtn)
     highlightBreweryAndType(li, p)
   })
 }
 
-function likeButton(likeBtn) {
-
+function likeButtons(likeBtn, dislikeBtn) {
+  likeBtn.addEventListener('click', event => {
+    if(event.target.innerText === 'Gulp') {
+      likeBtn.disabled = true
+      dislikeBtn.disabled = false
+      likeBtn.style.color = 'green'
+      dislikeBtn.style.color = 'black'
+    }
+  })
+  dislikeBtn.addEventListener('click', event => {
+    if(event.target.innerText === 'Belch') {
+      likeBtn.disabled = false
+      dislikeBtn.disabled = true
+      dislikeBtn.style.color = 'red'
+      likeBtn.style.color = 'black'
+    }
+  })
 }
 
 function highlightBreweryAndType(li, p) {
-  console.log(li, p)
   li.addEventListener('mouseover', event => {
     event.target.style.color = 'gold'
     setTimeout(() => {
@@ -86,5 +100,4 @@ function highlightBreweryAndType(li, p) {
     }, 1000)
   })
 }
-
 
