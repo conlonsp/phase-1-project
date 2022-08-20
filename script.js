@@ -1,22 +1,6 @@
 document.addEventListener('DOMContentLoaded', event => {
-  getPageNum()
+  getCityAndState()
 })
-
-function getPageNum() {
-  let pageNum = 1
-  const nextBtn = document.getElementById('next')
-  const backBtn = document.getElementById('back')
-  nextBtn.addEventListener('click', event => {
-    pageNum++
-    console.log(pageNum)
-  })
-  backBtn.addEventListener('click', event => {
-    pageNum--
-    console.log(pageNum)
-  })
-  console.log(pageNum)
-  getCityAndState(pageNum)
-}
 
 function getCityAndState() {
   const form = document.getElementById('city-state-form')
@@ -42,7 +26,7 @@ function getCityAndState() {
 }
 
 function fetchBreweries(city, state, pageNum) {
-  fetch(`https://api.openbrewerydb.org/breweries?by_city=${city}&by_state=${state}&per_page=50&`)
+  fetch(`https://api.openbrewerydb.org/breweries?by_city=${city}&by_state=${state}&per_page=50`)
   .then(resp => resp.json())
   .then(breweries => appendBreweries(breweries))
 }
@@ -104,3 +88,21 @@ function unhighlightBreweryAndType(li, p) {
     event.target.style.color = 'black'
   })
 }
+
+
+/////////////////////// FUTURE ADDITIONS ////////////////////////
+
+// function getPageNum() {
+//   let pageNum = 1
+//   const nextBtn = document.getElementById('next')
+//   const backBtn = document.getElementById('back')
+//   nextBtn.addEventListener('click', event => {
+//     pageNum++
+//     console.log(pageNum)
+//   })
+//   backBtn.addEventListener('click', event => {
+//     pageNum--
+//     console.log(pageNum)
+//   })
+//   console.log(pageNum)
+// }
