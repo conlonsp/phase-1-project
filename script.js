@@ -64,6 +64,7 @@ function appendBreweries(breweries) {
     ul.append(li, p, likeBtn, dislikeBtn)
     likeButtons(likeBtn, dislikeBtn)
     highlightBreweryAndType(li, p)
+    unhighlightBreweryAndType(li, p)
   })
 }
 
@@ -88,16 +89,18 @@ function likeButtons(likeBtn, dislikeBtn) {
 
 function highlightBreweryAndType(li, p) {
   li.addEventListener('mouseover', event => {
-    event.target.style.color = 'gold'
-    setTimeout(() => {
-      event.target.style.color = ''
-    }, 1000)
+    event.target.style.color = 'goldenrod'
   })
   p.addEventListener('mouseover', event => {
     event.target.style.color = 'orange'
-    setTimeout(() => {
-      event.target.style.color = ''
-    }, 1000)
   })
 }
 
+function unhighlightBreweryAndType(li, p) {
+  li.addEventListener('mouseout', event => {
+    event.target.style.color = 'black'
+  })
+  p.addEventListener('mouseout', event => {
+    event.target.style.color = 'black'
+  })
+}
