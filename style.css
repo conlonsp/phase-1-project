@@ -22,6 +22,10 @@ input#state {
 
 div#brewery-type-list {
   position: absolute;
-  top: 245px;
+  top: 235px;
   left: 1100px
+}
+
+body {
+  background-image: url('./images/Hardwood.jpg');
 }
