@@ -37,18 +37,24 @@ function appendBreweries(breweries) {
     ul.removeChild(ul.firstChild)
   }
   breweries.forEach(brewery => {
-    let li = document.createElement('li')
-    let p = document.createElement('p')
+    let name = document.createElement('li')
+    let street = document.createElement('p')
+    let type = document.createElement('p')
     let likeBtn = document.createElement('button')
     let dislikeBtn = document.createElement('button')
     likeBtn.textContent = 'Gulp'
     dislikeBtn.textContent = 'Belch'
-    li.textContent = `Name: ${brewery.name}`
-    p.textContent = `Type: ${brewery.brewery_type}`
-    ul.append(li, p, likeBtn, dislikeBtn)
+    name.textContent = `Name: ${brewery.name}`
+    if(brewery.street === null) {
+      street.textContent = ''
+    } else {
+      street.textContent = `Street: ${brewery.street}`
+    }
+    type.textContent = `Type: ${brewery.brewery_type}`
+    ul.append(name, street, type, likeBtn, dislikeBtn)
     likeButtons(likeBtn, dislikeBtn)
-    highlightBreweryAndType(li, p)
-    unhighlightBreweryAndType(li, p)
+    highlightBreweryAndType(name, type)
+    unhighlightBreweryAndType(name, type)
   })
 }
 
