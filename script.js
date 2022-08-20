@@ -2,6 +2,14 @@ document.addEventListener('DOMContentLoaded', event => {
   getCityAndState()
 })
 
+function getNextPageNum() {
+  let pageNum = 1
+  const nextBtn = document.getElementById('next')
+  nextBtn.addEventListener('click', event => {
+    pageNum++
+  })
+}
+
 function getCityAndState() {
   const form = document.getElementById('city-state-form')
   form.addEventListener('submit', event => {
