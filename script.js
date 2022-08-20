@@ -56,23 +56,19 @@ function appendBreweries(breweries) {
     let li = document.createElement('li')
     let p = document.createElement('p')
     let likeBtn = document.createElement('button')
+    let dislikeBtn = document.createElement('button')
     likeBtn.textContent = 'Gulp'
+    dislikeBtn.textContent = 'Belch'
     li.textContent = `Name: ${brewery.name}`
     p.textContent = `Type: ${brewery.brewery_type}`
-    ul.append(li, p, likeBtn)
-    likeButton(likeBtn)
+    ul.append(li, p, likeBtn, dislikeBtn)
+    likeButton(likeBtn, dislikeBtn)
     highlightBreweryAndType(li, p)
   })
 }
 
 function likeButton(likeBtn) {
-  likeBtn.addEventListener('click', event => {
-    if(likeBtn.innerText === 'Gulp') {
-      likeBtn.innerText = 'Belch'
-    } else {
-      likeBtn.innerText = 'Gulp'
-    }
-  })
+
 }
 
 function highlightBreweryAndType(li, p) {
@@ -90,3 +86,5 @@ function highlightBreweryAndType(li, p) {
     }, 1000)
   })
 }
+
+
