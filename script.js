@@ -25,7 +25,7 @@ function getCityAndState() {
   })
 }
 
-function fetchBreweries(city, state, pageNum) {
+function fetchBreweries(city, state) {
   fetch(`https://api.openbrewerydb.org/breweries?by_city=${city}&by_state=${state}&per_page=50`)
   .then(resp => resp.json())
   .then(breweries => appendBreweries(breweries))
@@ -117,4 +117,5 @@ function unhighlightBreweryInfo(name, street, type) {
 //     console.log(pageNum)
 //   })
 //   console.log(pageNum)
+//   getCityAndState(pageNum)
 // }
