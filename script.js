@@ -1,6 +1,18 @@
 document.addEventListener('DOMContentLoaded', event => {
   getCityAndState()
+  click()
 })
+
+let page = 1
+let city = null
+let state = null
+
+function click() {
+  const button = document.getElementById('submit-button')
+  button.addEventListener('click', event => {
+    page = 1
+  })
+}
 
 function getCityAndState() {
   const form = document.getElementById('city-state-form')
@@ -8,55 +20,59 @@ function getCityAndState() {
     event.preventDefault()
     const cityInput = document.getElementById('city')
     const stateInput = document.getElementById('state')
-    let city = encodeURIComponent(cityInput.value.toLowerCase())
-    let state = encodeURIComponent(stateInput.value.toLowerCase())
+    city = encodeURIComponent(cityInput.value.toLowerCase())
+    state = encodeURIComponent(stateInput.value.toLowerCase())
     if(city === '') {
       city = null
-    } else {
-      city
     }
     if(state === '') {
       state = null
-    } else {
-      state
     }
+    
     fetchBreweries(city, state)
-    form.reset()
+    paginate(city, state)
+    // form.reset()
   })
 }
 
 function fetchBreweries(city, state) {
-  fetch(`https://api.openbrewerydb.org/breweries?by_city=${city}&by_state=${state}&per_page=50`)
+  fetch(`https://api.openbrewerydb.org/breweries?by_city=${city}&by_state=${state}&page=${page}&per_page=5`)
   .then(resp => resp.json())
-  .then(breweries => appendBreweries(breweries))
+  .then(breweries => {
+    appendBreweries(breweries)
+  })
 }
 
+const ul = document.getElementById('brewery-list')
+
 function appendBreweries(breweries) {
-  const ul = document.getElementById('brewery-list')
   while(ul.firstChild) {
     ul.removeChild(ul.firstChild)
   }
-  breweries.forEach(brewery => {
-    let name = document.createElement('li')
-    let street = document.createElement('p')
-    let type = document.createElement('p')
-    let likeBtn = document.createElement('button')
-    let dislikeBtn = document.createElement('button')
-    likeBtn.textContent = 'Gulp'
-    dislikeBtn.textContent = 'Belch'
-    name.textContent = `Name: ${brewery.name}`
-    if(brewery.street === null) {
-      street.textContent = ''
-    } else {
-      street.textContent = `Street: ${brewery.street}`
-    }
-    type.textContent = `Type: ${brewery.brewery_type}`
-    ul.append(name, street, type, likeBtn, dislikeBtn)
-    likeButtons(likeBtn, dislikeBtn)
-    highlightBreweryInfo(name, street, type)
-    unhighlightBreweryInfo(name, street, type)
-  })
+  breweries.forEach(createBrewCard)
 }
+
+function createBrewCard(brewery) {
+  const name = document.createElement('li')
+  let street = document.createElement('p')
+  let type = document.createElement('p')
+  let likeBtn = document.createElement('button')
+  let dislikeBtn = document.createElement('button')
+  likeBtn.textContent = 'Gulp'
+  dislikeBtn.textContent = 'Belch'
+  name.textContent = `Name: ${brewery.name}`
+  if(brewery.street === null) {
+    street.textContent = ''
+  } else {
+    street.textContent = `Street: ${brewery.street}`
+  }
+  type.textContent = `Type: ${brewery.brewery_type}`
+  ul.append(name, street, type, likeBtn, dislikeBtn)
+  likeButtons(likeBtn, dislikeBtn)
+  highlightBreweryInfo(name, street, type)
+  unhighlightBreweryInfo(name, street, type)
+}
+
 
 function likeButtons(likeBtn, dislikeBtn) {
   likeBtn.addEventListener('click', event => {
@@ -100,6 +116,30 @@ function unhighlightBreweryInfo(name, street, type) {
     event.target.style.color = 'black'
   })
 }
+
+function paginate(city, state) {
+  const back = document.getElementById("back")
+  const next = document.getElementById("next")
+  back.addEventListener('click', event => {
+    if(page > 1) {
+      page--
+    } else {
+      null
+    }
+    console.log(page)
+    fetchBreweries(city, state)
+  })
+  next.addEventListener('click', event => {
+    if(page < 20) {
+      page++
+    } else {
+      null
+    }
+    console.log(page)
+    fetchBreweries(city, state)
+  })
+}
+
 
 
 /////////////////////// FUTURE ADDITIONS ////////////////////////
